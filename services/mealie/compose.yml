@@ -1,0 +1,24 @@
+services:
+    mealie:
+        image: hkotel/mealie:latest
+        container_name: mealie
+        environment:
+            PUID: ${PUID}
+            PGID: ${PGID}
+            TZ: ${TZ}
+            # Default Recipe Settings
+            # RECIPE_PUBLIC: true
+            # RECIPE_SHOW_NUTRITION: true
+            # RECIPE_SHOW_ASSETS: true
+            # RECIPE_LANDSCAPE_VIEW: true
+            # RECIPE_DISABLE_COMMENTS: false
+            # RECIPE_DISABLE_AMOUNT: false
+            # Gunicorn
+            #WEB_CONCURRENCY: 2
+            # WORKERS_PER_CORE: 0.5
+            # MAX_WORKERS: 8
+        volumes:
+          - ./config:/app/data
+        ports:
+          - 8009:80
+        restart: unless-stopped

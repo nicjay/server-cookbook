@@ -1,0 +1,16 @@
+services:
+    stash:
+        image: ghcr.io/hotio/stash:release
+        container_name: stash
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+            - UMASK=002
+            - TZ=${TZ}
+        volumes:
+            - ./config:/config
+            - ./db:/db
+            - ${PATH_MEDIA}/videos/porn:/data
+        ports:
+            - 8008:9999
+        restart: unless-stopped

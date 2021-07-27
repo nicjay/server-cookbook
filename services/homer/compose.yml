@@ -1,0 +1,12 @@
+services:
+    homer:
+        image: b4bz/homer
+        container_name: homer
+        environment:
+            - UID=${PUID}
+            - GID=${PGID}
+        volumes:
+            - ./config:/www/assets
+        ports:
+            - 8001:8080
+        restart: unless-stopped

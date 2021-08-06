@@ -14,5 +14,5 @@ services:
             - ${PATH_SERVICES}/vaultwarden/backups:/vaultwarden_backup
             - ${PATH_SERVICES}/valheim-server/backups:/valheim_backup
         ports:
-            - 3875:3875
+            - 8003:3875
         restart: unless-stopped

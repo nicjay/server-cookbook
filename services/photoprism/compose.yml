@@ -26,7 +26,7 @@ services:
             PHOTOPRISM_DATABASE_NAME: ${MYSQL_DATABASE}    # MariaDB database schema name
             PHOTOPRISM_DATABASE_USER: ${MYSQL_USER}        # MariaDB database user name
             PHOTOPRISM_DATABASE_PASSWORD: ${MYSQL_PASSWORD} # MariaDB database user password
-            PHOTOPRISM_SITE_URL: "http://localhost:2342/"  # Public PhotoPrism URL
+            PHOTOPRISM_SITE_URL: "http://localhost:8005/"  # Public PhotoPrism URL
             PHOTOPRISM_SITE_TITLE: "PhotoPrism"
             PHOTOPRISM_SITE_CAPTION: "Browse Your Life"
             PHOTOPRISM_SITE_DESCRIPTION: ""
@@ -35,7 +35,7 @@ services:
             - ${PATH_PHOTO}:/photoprism/originals:ro
             - ./config:/photoprism/storage
         ports:
-            - 2342:2342
+            - 8005:2342
         depends_on:
           - photoprism-db
         restart: unless-stopped

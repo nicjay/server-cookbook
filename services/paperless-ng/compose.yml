@@ -15,5 +15,5 @@ services:
             - ./config:/config
             - ./data:/data
         ports:
-            - 8054:8000
+            - 8004:8000
         restart: unless-stopped

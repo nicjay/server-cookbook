@@ -22,85 +22,6 @@ services:
             - ${PATH_MEDIA}/music:/music
         restart: unless-stopped 
 
-    sonarr:
-        image: ghcr.io/linuxserver/sonarr:latest
-        container_name: sonarr
-        environment:
-            - PUID=${PUID}
-            - PGID=${PGID}
-            - TZ=${TZ}
-        volumes:
-            - ./sonarr:/config
-            - ${PATH_MEDIA}:/media
-        ports:
-            - 8002:8989
-        networks:
-            - media-services-net
-        restart: unless-stopped
-
-    radarr:
-        image: ghcr.io/linuxserver/radarr:latest
-        container_name: radarr
-        environment:
-            - PUID=${PUID}
-            - PGID=${PGID}
-            - TZ=${TZ}
-        volumes:
-            - ./radarr:/config
-            - ${PATH_MEDIA}:/media
-        ports:
-            - 8003:7878
-        networks:
-            - media-services-net
-        restart: unless-stopped
-
-    lidarr:
-        image: ghcr.io/linuxserver/lidarr:latest
-        container_name: lidarr
-        environment:
-            - PUID=${PUID}
-            - PGID=${PGID}
-            - TZ=${TZ}
-        volumes:
-            - ./lidarr:/config
-            - ${PATH_MEDIA}:/media
-        ports:
-            - 8004:8686
-        networks:
-            - media-services-net
-        restart: unless-stopped
-    
-    readarr:
-        image: ghcr.io/linuxserver/readarr:nightly
-        container_name: readarr
-        environment:
-            - PUID=${PUID}
-            - PGID=${PGID}
-            - TZ=${TZ}
-        volumes:
-            - ./readarr:/config
-            - ${PATH_MEDIA}:/media
-        ports:
-            - 8787:8787
-        networks:
-            - media-services-net
-        restart: unless-stopped
-    
-    prowlarr:
-        image: ghcr.io/linuxserver/prowlarr:develop
-        container_name: prowlarr
-        environment:
-            - PUID=${PUID}
-            - PGID=${PGID}
-            - TZ=${TZ}
-        volumes:
-            - ./prowlarr:/config
-        ports:
-            - 8010:9696
-        networks:
-            - media-services-net
-        restart: unless-stopped
-    
     overseerr:
         image: ghcr.io/linuxserver/overseerr:latest
         container_name: overseerr
@@ -109,7 +30,7 @@ services:
             - PGID=${PGID}
             - TZ=${TZ}
         ports:
-            - 8007:5055
+            - 8100:5055
         volumes:
             - ./overseerr:/config
         networks:
@@ -130,9 +51,88 @@ services:
             - ./flood:/config
             - ${PATH_MEDIA}/torrents:/media/torrents
         ports:
-            - 8006:3000
+            - 8101:3000
             - 55834:55834
         networks:
             - media-services-net
             - proxy-services-net
+        restart: unless-stopped
+
+    prowlarr:
+        image: ghcr.io/linuxserver/prowlarr:develop
+        container_name: prowlarr
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+            - TZ=${TZ}
+        volumes:
+            - ./prowlarr:/config
+        ports:
+            - 8102:9696
+        networks:
+            - media-services-net
+        restart: unless-stopped
+
+    sonarr:
+        image: ghcr.io/linuxserver/sonarr:latest
+        container_name: sonarr
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+            - TZ=${TZ}
+        volumes:
+            - ./sonarr:/config
+            - ${PATH_MEDIA}:/media
+        ports:
+            - 8103:8989
+        networks:
+            - media-services-net
+        restart: unless-stopped
+
+    radarr:
+        image: ghcr.io/linuxserver/radarr:latest
+        container_name: radarr
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+            - TZ=${TZ}
+        volumes:
+            - ./radarr:/config
+            - ${PATH_MEDIA}:/media
+        ports:
+            - 8104:7878
+        networks:
+            - media-services-net
+        restart: unless-stopped
+
+    lidarr:
+        image: ghcr.io/linuxserver/lidarr:latest
+        container_name: lidarr
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+            - TZ=${TZ}
+        volumes:
+            - ./lidarr:/config
+            - ${PATH_MEDIA}:/media
+        ports:
+            - 8105:8686
+        networks:
+            - media-services-net
+        restart: unless-stopped
+    
+    readarr:
+        image: ghcr.io/linuxserver/readarr:nightly
+        container_name: readarr
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+            - TZ=${TZ}
+        volumes:
+            - ./readarr:/config
+            - ${PATH_MEDIA}:/media
+        ports:
+            - 8106:8787
+        networks:
+            - media-services-net
         restart: unless-stopped

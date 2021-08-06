@@ -12,5 +12,5 @@ services:
             - ./db:/db
             - ${PATH_MEDIA}/videos/porn:/data
         ports:
-            - 8008:9999
+            - 8007:9999
         restart: unless-stopped

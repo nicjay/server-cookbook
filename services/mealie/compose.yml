@@ -20,5 +20,5 @@ services:
         volumes:
           - ./config:/app/data
         ports:
-          - 8009:80
+          - 8006:80
         restart: unless-stopped

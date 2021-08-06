@@ -5,7 +5,7 @@ services:
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
-            - APP_URL=http://192.168.1.2:6875
+            - APP_URL=http://192.168.1.2:8002
             - DB_HOST=bookstack-db
             - DB_USER=${MYSQL_USER}
             - DB_PASS=${MYSQL_PASSWORD}
@@ -13,7 +13,7 @@ services:
         volumes:
             - ./config:/config
         ports:
-            - 6875:80
+            - 8002:80
         restart: unless-stopped
         depends_on:
             - bookstack-db

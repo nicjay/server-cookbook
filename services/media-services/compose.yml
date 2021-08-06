@@ -70,7 +70,21 @@ services:
             - media-services-net
         restart: unless-stopped
     
-    #readarr goes here
+    readarr:
+        image: ghcr.io/linuxserver/readarr:nightly
+        container_name: readarr
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+            - TZ=${TZ}
+        volumes:
+            - ./readarr:/config
+            - ${PATH_MEDIA}:/media
+        ports:
+            - 8787:8787
+        networks:
+            - media-services-net
+        restart: unless-stopped
     
     prowlarr:
         image: ghcr.io/linuxserver/prowlarr:develop
@@ -120,4 +134,5 @@ services:
             - 55834:55834
         networks:
             - media-services-net
+            - proxy-services-net
         restart: unless-stopped

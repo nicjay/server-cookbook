@@ -1,8 +1,13 @@
+# Ignore everything
 *
+
+# Except for...
 !.gitignore
 !README.md
+
 !scripts/
 !scripts/*
+
 !services/
 !services/*
 !services/*/compose.yml

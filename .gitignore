@@ -11,3 +11,4 @@
 !services/
 !services/*
 !services/*/compose.yml
+!services/*/backup.sh

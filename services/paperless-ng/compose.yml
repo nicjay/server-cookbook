@@ -14,6 +14,7 @@ services:
         volumes:
             - ./config:/config
             - ./data:/data
+            - ./backups:/backups
         ports:
             - 8004:8000
         restart: unless-stopped

@@ -1,0 +1,19 @@
+services:
+    healthchecks:
+        image: ghcr.io/linuxserver/healthchecks
+        container_name: healthchecks
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+            - SITE_ROOT=http://192.168.1.2:8008
+            - SITE_NAME="Healthchecks | BeastBox"
+            - ALLOWED_HOSTS=*
+            - SUPERUSER_EMAIL=${SUPERUSER_EMAIL}
+            - SUPERUSER_PASSWORD=${SUPERUSER_PASSWORD}
+            - SITE_LOGO_URL=https://img.icons8.com/windows/50/000000/wolf-pack-battalion.png
+            - SECRET_KEY=${SECRET_KEY}
+        volumes:
+            - ./config:/config
+        ports:
+            - 8008:8000
+        restart: unless-stopped

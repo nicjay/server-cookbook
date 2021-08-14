@@ -11,9 +11,10 @@ services:
             - ./config:/config
             - ./config/cache:/cache
             - ./config/logs:/logs
-            - ${PATH_SERVICES}/vaultwarden/backups:/vaultwarden/backups
-            - ${PATH_SERVICES}/paperless-ng/backups:/paperless-ng/backups
             - ${PATH_SERVICES}/bookstack/backups:/bookstack/backups
+            - ${PATH_SERVICES}/paperless-ng/backups:/paperless-ng/backups
+            - ${PATH_SERVICES}/photoprism/backups:/photoprism/backups
+            - ${PATH_SERVICES}/vaultwarden/backups:/vaultwarden/backups
             #- ${PATH_SERVICES}/valheim-server/backups:/valheim_backup
         ports:
             - 8003:3875

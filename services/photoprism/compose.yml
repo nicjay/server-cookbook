@@ -41,7 +41,7 @@ services:
         restart: unless-stopped
 
     photoprism-db:
-        image: mariadb:10.5
+        image: mariadb:10.6
         container_name: photoprism-db
         security_opt:
             - seccomp:unconfined

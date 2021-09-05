@@ -1,13 +1,13 @@
 services:
     paperless-ng:
-        image: ghcr.io/linuxserver/paperless-ng
+        image: ghcr.io/linuxserver/paperless-ng:latest
         container_name: paperless-ng
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
             - TZ=${TZ}
             - PAPERLESS_TIME_ZONE=${TZ}
-            - PAPERLESS_FILENAME_FORMAT={created_year}/{correspondent}/{title}
+            - PAPERLESS_FILENAME_FORMAT={created_year}/{correspondent}/{correspondent}-{title}-{created_year}{created_month}{created_day}
             - PAPERLESS_SECRET_KEY=${SECRET_KEY}
             #- PAPERLESS_ALLOWED_HOSTS=${PAPERLESS_URL}
             #- PAPERLESS_AUTO_LOGIN_USERNAME=${USERNAME}

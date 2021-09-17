@@ -1,0 +1,12 @@
+services:
+    redbot:
+        image: phasecorex/red-discordbot
+        container_name: redbot
+        environment:
+            - PUID=${PUID}
+            - TZ=${TZ}
+            - TOKEN=${DISC_TOKEN}
+            - PREFIX=!
+        volumes:
+            - ./config:/data
+        restart: unless-stopped

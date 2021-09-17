@@ -1,0 +1,13 @@
+services:
+    grav:
+        image: ghcr.io/linuxserver/grav
+        container_name: grav
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+            - TZ=${TZ}
+        volumes:
+            - ./config:/config
+        ports:
+            - 8010:80
+        restart: unless-stopped

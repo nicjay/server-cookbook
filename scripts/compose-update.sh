@@ -8,7 +8,7 @@ do
     if [ -e ${dir}compose.yml ]
     then
         #echo ---Pulling `basename $dir`---
-        docker-compose -f ${dir}compose.yml pull
+        docker compose -f ${dir}compose.yml pull
     fi
 done
 
@@ -17,7 +17,7 @@ do
     if [ -e ${dir}compose.yml ]
     then
         #echo ---Creating `basename $dir`---
-        docker-compose -f ${dir}compose.yml up -d --remove-orphans
+        docker compose -f ${dir}compose.yml up -d --remove-orphans
     fi
 done
 

@@ -39,7 +39,7 @@ services:
         restart: unless-stopped
 
     flood:
-        image: ghcr.io/hotio/rflood:release
+        image: cr.hotio.dev/hotio/rflood:release
         container_name: flood
         environment:
             - PUID=${PUID}

@@ -1,0 +1,12 @@
+services:
+    flame:
+        image: pawelmalak/flame:latest
+        container_name: flame
+        volumes:
+            - ./config:/app/data
+            #- /var/run/docker.sock:/var/run/docker.sock # optional but required for Docker integration feature
+        ports:
+            - 8010:5005
+        environment:
+            - PASSWORD=${FLAME_PASSWORD}
+        restart: unless-stopped

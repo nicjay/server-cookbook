@@ -1,6 +1,6 @@
 services:
     homer:
-        image: b4bz/homer
+        image: b4bz/homer:latest
         container_name: homer
         environment:
             - UID=${PUID}

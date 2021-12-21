@@ -1,0 +1,16 @@
+services:
+    navidrome:
+        image: deluan/navidrome:latest
+        container_name: navidrome
+        user: ${PUID}:${PGID}
+        environment:
+            # Optional: put your config options customization here. Examples:
+            ND_SCANSCHEDULE: 1h
+            ND_LOGLEVEL: info  
+            ND_BASEURL: ""
+        volumes:
+            - ./config:/data
+            - /volume1/media/music:/music:ro"
+        ports:
+            - 8003:4533
+        restart: unless-stopped

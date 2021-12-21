@@ -1,6 +1,6 @@
 services:
     stash:
-        image: ghcr.io/hotio/stash:release
+        image: cr.hotio.dev/hotio/stash:release
         container_name: stash
         environment:
             - PUID=${PUID}

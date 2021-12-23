@@ -4,6 +4,7 @@ services:
         container_name: redbot
         environment:
             - PUID=${PUID}
+            - PGID=${PGID}
             - TZ=${TZ}
             - TOKEN=${DISC_TOKEN}
             - PREFIX=!

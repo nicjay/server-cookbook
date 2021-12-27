@@ -1,6 +1,6 @@
 services:
     healthchecks:
-        image: ghcr.io/linuxserver/healthchecks
+        image: lscr.io/linuxserver/healthchecks
         container_name: healthchecks
         environment:
             - PUID=${PUID}

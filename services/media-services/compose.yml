@@ -6,7 +6,7 @@ networks:
 
 services:
     plex:
-        image: ghcr.io/linuxserver/plex:latest
+        image: lscr.io/linuxserver/plex:latest
         container_name: plex
         network_mode: host
         environment:
@@ -23,7 +23,7 @@ services:
         restart: unless-stopped 
 
     overseerr:
-        image: ghcr.io/linuxserver/overseerr:latest
+        image: lscr.io/linuxserver/overseerr:latest
         container_name: overseerr
         environment:
             - PUID=${PUID}
@@ -59,7 +59,7 @@ services:
         restart: unless-stopped
 
     prowlarr:
-        image: ghcr.io/linuxserver/prowlarr:develop
+        image: lscr.io/linuxserver/prowlarr:develop
         container_name: prowlarr
         environment:
             - PUID=${PUID}
@@ -74,7 +74,7 @@ services:
         restart: unless-stopped
 
     sonarr:
-        image: ghcr.io/linuxserver/sonarr:latest
+        image: lscr.io/linuxserver/sonarr:latest
         container_name: sonarr
         environment:
             - PUID=${PUID}
@@ -90,7 +90,7 @@ services:
         restart: unless-stopped
 
     radarr:
-        image: ghcr.io/linuxserver/radarr:latest
+        image: lscr.io/linuxserver/radarr:latest
         container_name: radarr
         environment:
             - PUID=${PUID}
@@ -106,7 +106,7 @@ services:
         restart: unless-stopped
 
     lidarr:
-        image: ghcr.io/linuxserver/lidarr:latest
+        image: lscr.io/linuxserver/lidarr:latest
         container_name: lidarr
         environment:
             - PUID=${PUID}
@@ -122,7 +122,7 @@ services:
         restart: unless-stopped
     
     readarr:
-        image: ghcr.io/linuxserver/readarr:nightly
+        image: lscr.io/linuxserver/readarr:nightly
         container_name: readarr
         environment:
             - PUID=${PUID}

@@ -1,6 +1,6 @@
 services:
     bookstack:
-        image: ghcr.io/linuxserver/bookstack:latest
+        image: lscr.io/linuxserver/bookstack:latest
         container_name: bookstack
         environment:
             - PUID=${PUID}
@@ -19,7 +19,7 @@ services:
             - bookstack-db
 
     bookstack-db:
-        image: ghcr.io/linuxserver/mariadb:latest
+        image: lscr.io/linuxserver/mariadb:latest
         container_name: bookstack-db
         environment:
             - PUID=${PUID}

@@ -1,14 +1,16 @@
 ### Overview
 
-Includes docker-compose files and scripts to configure services on my home server. 
+- Includes docker-compose files and scripts to configure services on my home server. 
 
-Containers are started and kept up-to-date with [Docker Compose v2](https://github.com/docker/compose).
+- Containers are started and kept up-to-date with [Docker Compose v2](https://github.com/docker/compose). 
 
-Preferred images are from [linuxserver](https://www.linuxserver.io/) or [hotio](https://hotio.dev/) where possible, otherwise official images from app creators.
+- [Diun](https://github.com/crazy-max/diun) is used for update notifications with Discord integration.
 
-Sensitive information is stored in .env files (not checked into Git) and interpolated in docker-compose.
+- My preferred images are from [linuxserver](https://www.linuxserver.io/) or [hotio](https://hotio.dev/) where possible, otherwise official images from app creators.
 
-[SWAG](https://github.com/linuxserver/docker-swag) reverse proxy is utilized for services I wish to expose to the outside world.
+- Sensitive information from .env files are populated with variable substitution in compose files.
+
+- [SWAG](https://github.com/linuxserver/docker-swag) reverse proxy is used to expose selected services.
 
 ### Hardware
 
@@ -19,4 +21,4 @@ Sensitive information is stored in .env files (not checked into Git) and interpo
   - Upgrade: 512GB NVME SSD (Read-only cache)
 - UPS: [CyberPower CP1000AVRLCD](https://www.cyberpowersystems.com/product/ups/intelligent-lcd/cp1000avrlcd/)
 - Router: [Netgear R7800](https://www.netgear.com/support/product/r7800.aspx)
-  - Voxel Firmware
+  - [Voxel Firmware](http://www.voxel-firmware.com/Downloads/Voxel/html/r7800.html)

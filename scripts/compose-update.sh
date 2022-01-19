@@ -6,8 +6,3 @@ find -name 'docker-compose.yml' -exec docker compose -f {} up -d --remove-orphan
 
 # Remove dangling images
 yes | docker image prune
-
-
-
-
-

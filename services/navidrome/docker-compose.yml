@@ -9,8 +9,8 @@ services:
             ND_LOGLEVEL: info  
             ND_BASEURL: ""
         volumes:
-            - ./config:/data
-            - /volume1/media/music:/music:ro"
+            - ${PATH_SERVICES}/navidrome/config:/data
+            - ${PATH_MEDIA}/music:/music:ro"
         ports:
             - 8003:4533
         restart: unless-stopped

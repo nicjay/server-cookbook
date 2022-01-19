@@ -10,5 +10,5 @@
 
 !services/
 !services/*
-!services/*/compose.yml
+!services/*/docker-compose.yml
 !services/*/backup.sh

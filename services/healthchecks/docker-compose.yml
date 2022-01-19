@@ -1,6 +1,6 @@
 services:
     healthchecks:
-        image: lscr.io/linuxserver/healthchecks
+        image: lscr.io/linuxserver/healthchecks:latest
         container_name: healthchecks
         environment:
             - PUID=${PUID}
@@ -8,12 +8,12 @@ services:
             - SITE_ROOT=http://192.168.1.2:8008
             - SITE_NAME="Healthchecks | BeastBox"
             - ALLOWED_HOSTS=*
-            - SUPERUSER_EMAIL=${SUPERUSER_EMAIL}
-            - SUPERUSER_PASSWORD=${SUPERUSER_PASSWORD}
+            - SUPERUSER_EMAIL=${HEALTHCHECKS_SUPERUSER_EMAIL}
+            - SUPERUSER_PASSWORD=${HEALTHCHECKS_SUPERUSER_PASSWORD}
             - SITE_LOGO_URL=https://img.icons8.com/windows/50/000000/wolf-pack-battalion.png
-            - SECRET_KEY=${SECRET_KEY}
+            - SECRET_KEY=${HEALTHCHECKS_SECRET_KEY}
         volumes:
-            - ./config:/config
+            - ${PATH_SERVICES}/healthchecks/config:/config
         ports:
             - 8008:8000
         restart: unless-stopped

@@ -1,0 +1,22 @@
+services:
+    diun:
+        image: crazymax/diun:latest
+        container_name: diun
+        command: serve
+        volumes:
+            - ${PATH_SERVICES}/diun/config:/data
+            - /var/run/docker.sock:/var/run/docker.sock
+        environment:
+            - TZ=${TZ}
+            - LOG_LEVEL=info
+            - LOG_JSON=false
+            - DIUN_WATCH_WORKERS=20
+            - DIUN_WATCH_SCHEDULE=0 */6 * * *
+            - DIUN_PROVIDERS_DOCKER=true
+            - DIUN_PROVIDERS_DOCKER_WATCHBYDEFAULT=true
+            - DIUN_NOTIF_DISCORD_WEBHOOKURL=${DIUN_DISC_HOOK}
+            - DIUN_NOTIF_DISCORD_MENTIONS=<@!${DIUN_DISC_ME}>
+            - DIUN_NOTIF_DISCORD_RENDERFIELDS=false
+            - DIUN_WATCH_HEALTHCHECKS_BASEURL=${DIUN_HEALTHCHECKS_BASEURL}
+            - DIUN_WATCH_HEALTHCHECKS_UUID=${DIUN_HEALTHCHECKS_UUID}
+        restart: unless-stopped

@@ -9,5 +9,5 @@ services:
             - TOKEN=${DISC_TOKEN}
             - PREFIX=!
         volumes:
-            - ./config:/data
+            - ${PATH_SERVICES}/redbot/config:/data
         restart: unless-stopped

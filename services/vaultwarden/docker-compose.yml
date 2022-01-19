@@ -1,0 +1,21 @@
+networks:
+    proxy-services-net:
+        name: proxy-services-net
+
+services:
+    vaultwarden:
+        image: vaultwarden/server:latest
+        container_name: vaultwarden
+        environment:
+            - TZ=${TZ}
+            - SIGNUPS_ALLOWED=false
+            - WEBSOCKET_ENABLED=true
+            - LOG_FILE=/data/logs/vaultwarden.log
+            - LOG_LEVEL=warn
+            - EXTENDED_LOGGING=true
+            - ROCKET_CLI_COLORS=off
+        volumes:
+            - ${PATH_SERVICES}/vaultwarden/config:/data
+        networks:
+            - proxy-services-net
+        restart: unless-stopped

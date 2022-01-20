@@ -11,4 +11,6 @@
 !services/
 !services/*
 !services/*/docker-compose.yml
+!services/*/docker-compose.valheim.yml
 !services/*/backup.sh
+!services/*/*.example

@@ -1,0 +1,29 @@
+services:
+    valheim-server:
+        image: ghcr.io/lloesche/valheim-server:latest
+        container_name: valheim-server
+        cap_add:
+            - sys_nice
+        environment:
+            PUID: ${PUID}
+            PGID: ${PGID}
+            TZ: ${TZ}
+            SERVER_NAME: ${SERVER_NAME}
+            WORLD_NAME: ${WORLD_NAME}
+            SERVER_PASS: ${SERVER_PASS}
+            BACKUPS_DIRECTORY: "/backups"
+            UPDATE_CRON: "*/30 * * * *" # Check for updates every 30 minutes
+            BACKUPS_CRON: "0 */2 * * *" # Create a backup on the hour every 2 hours
+            BACKUPS_IF_IDLE: false
+            # Event notifications with Discord webhook. Embed color codes: https://gist.github.com/thomasbnt/b6f455e2c7d743b796917fa3c205f812
+            POST_SERVER_LISTENING_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim\",\"embeds\":[{\"title\":\"Start\",\"description\":\"Server Status: Ready to Connect!\",\"color\":3066993}]}" "${DISCORD_WEBHOOK}"'
+            PRE_SERVER_SHUTDOWN_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim\",\"embeds\":[{\"title\":\"Stop\",\"description\":\"Server Status: Shutting Down\",\"color\":15158332}]}" "${DISCORD_WEBHOOK}"'
+            PRE_RESTART_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim\",\"embeds\":[{\"title\":\"Restart\",\"description\":\"Server Status: Restarting\",\"color\":16776960}]}" "${DISCORD_WEBHOOK}"'
+            POST_RESTART_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim\",\"embeds\":[{\"title\":\"Restart\",\"description\":\"Server Status: Restart Complete\",\"color\":16776960}]}" "${DISCORD_WEBHOOK}"'
+        volumes:
+            - ${PATH_SERVICES}/valheim-server/config:/config
+            - ${PATH_SERVICES}/valheim-server/data:/opt/valheim
+            - ${PATH_SERVICES}/valheim-server/backups:/backups
+        ports: 
+            - 2456-2457:2456-2457/udp
+        restart: unless-stopped

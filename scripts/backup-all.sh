@@ -12,4 +12,4 @@
 wait
 
 # Ping Healthchecks
-curl http://192.168.1.2:8008/ping/7e050647-99ba-4385-8273-e4c645465d3e
+#curl http://192.168.1.2:8008/ping/7e050647-99ba-4385-8273-e4c645465d3e

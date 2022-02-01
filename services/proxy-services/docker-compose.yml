@@ -18,7 +18,7 @@ services:
             - DNSPLUGIN=cloudflare
             - EMAIL=${SWAG_EMAIL}
             - MAXMINDDB_LICENSE_KEY=${MAXMINDDB_LICENSE_KEY}
-            - DOCKER_MODS=ghcr.io/linuxserver/mods:swag-f2bdiscord
+            - DOCKER_MODS=linuxserver/mods:swag-maxmind|linuxserver/mods:swag-f2bdiscord|linuxserver/mods:swag-dashboard
             - DISC_HOOK=${SWAG_DISC_HOOK}
             - DISC_ME=${DISC_ME}
             - DISC_API=${SWAG_DISC_API}

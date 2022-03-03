@@ -3,14 +3,14 @@
 
 # Except for...
 !.gitignore
+!.github/
+!.github/**
 !README.md
 
 !scripts/
-!scripts/*
-!scripts/*/*
+!scripts/**
 
 !services/
-!services/*
 !services/*/docker-compose.yml
 !services/*/docker-compose.valheim.yml
 !services/*/backup.sh

@@ -12,6 +12,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Create .env
-        run: find ./services -maxdepth 1 -mindepth 1 -type d -exec bash -c 'echo "${{ secrets[format('ENV_{0}', ${1^^})] }}" > $1/.env' bash {}  \;
+        run: find ./services -maxdepth 1 -mindepth 1 -type d -exec bash -c 'echo "${{ secrets[format('ENV_{0}', '${1^^})'] }}" > $1/.env' bash {}  \;
       - name: Build containers
         run: find -name 'docker-compose.yml' -exec docker compose -f {} build \;

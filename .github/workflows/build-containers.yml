@@ -1,9 +1,13 @@
-#Simple check if all containers can build and start
+# Simple check if all containers can build and start
 name: Build Containers
 
 on:
   push:
     branches: [main]
+
+concurrency: 
+  group: ${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:

@@ -18,28 +18,37 @@ services:
             - DNSPLUGIN=cloudflare
             - EMAIL=${SWAG_EMAIL}
             - MAXMINDDB_LICENSE_KEY=${MAXMINDDB_LICENSE_KEY}
-            - DOCKER_MODS=linuxserver/mods:swag-maxmind|linuxserver/mods:swag-f2bdiscord|linuxserver/mods:swag-dashboard
-            - DISC_HOOK=${SWAG_DISC_HOOK}
-            - DISC_ME=${DISC_ME}
-            - DISC_API=${SWAG_DISC_API}
+            - DOCKER_MODS=linuxserver/mods:swag-maxmind|linuxserver/mods:swag-dashboard|linuxserver/mods:swag-crowdsec
+            - CROWDSEC_API_KEY=${CROWDSEC_API_KEY}
+            - CROWDSEC_LAPI_URL=http://crowdsec:8080
+            - CROWDSEC_SITE_KEY=${CROWDSEC_SITE_KEY}
+            - CROWDSEC_SECRET_KEY=${CROWDSEC_SECRET_KEY}
+            - CROWDSEC_F2B_DISABLE=true
         volumes:
             - ${PATH_SERVICES}/proxy-services/swag:/config
-            - ${PATH_SERVICES}/vaultwarden/config/logs/vaultwarden.log:/vaultwarden/vaultwarden.log:ro
-            # TODO: Mount additional app logs here
         ports:
             - 443:443
             - 80:80
         networks:
             - proxy-services-net
-        #depends_on:
-        #    - authelia
         restart: unless-stopped
 
-    # authelia:
-    #     image: authelia/authelia:4.21.0
-    #     container_name: authelia
-    #     environment:
-    #         - TZ=${TZ}
-    #     volumes:
-    #         - ${PATH_CONFIG}/authelia:/config
-    #     restart: unless-stopped
+    crowdsec:
+        image: docker.io/crowdsecurity/crowdsec:latest
+        container_name: crowdsec
+        security_opt:
+            - no-new-privileges=true
+        environment:
+            - GID=${PGID}
+            - COLLECTIONS=crowdsecurity/nginx crowdsecurity/http-cve crowdsecurity/whitelist-good-actors Dominic-Wagner/vaultwarden
+            - CUSTOM_HOSTNAME=${HOSTNAME}
+            #- LEVEL_DEBUG=true
+        volumes:
+            - ${PATH_SERVICES}/proxy-services/crowdsec/config:/etc/crowdsec:rw
+            - ${PATH_SERVICES}/proxy-services/crowdsec/data:/var/lib/crowdsec/data:rw
+            - ${PATH_SERVICES}/proxy-services/swag/log/nginx:/var/log/swag:ro
+            - ${PATH_SERVICES}/vaultwarden/config/logs/vaultwarden.log:/var/log/vaultwarden.log:ro
+            - /var/log:/var/log/host:ro      
+        networks:
+            - proxy-services-net
+        restart: unless-stopped

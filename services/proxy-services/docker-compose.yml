@@ -29,8 +29,11 @@ services:
         ports:
             - 443:443
             - 80:80
+            - 8010:81 # Dashboard
         networks:
             - proxy-services-net
+        depends_on:
+            - crowdsec
         restart: unless-stopped
 
     crowdsec:
@@ -42,7 +45,6 @@ services:
             - GID=${PGID}
             - COLLECTIONS=crowdsecurity/nginx crowdsecurity/http-cve crowdsecurity/whitelist-good-actors Dominic-Wagner/vaultwarden
             - CUSTOM_HOSTNAME=${HOSTNAME}
-            #- LEVEL_DEBUG=true
         volumes:
             - ${PATH_SERVICES}/proxy-services/crowdsec/config:/etc/crowdsec:rw
             - ${PATH_SERVICES}/proxy-services/crowdsec/data:/var/lib/crowdsec/data:rw

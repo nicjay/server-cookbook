@@ -4,7 +4,7 @@
 # Navigate to paths in Subshells
 
 (cd /volume1/docker/services/bookstack ; bash backup.sh) &
-(cd /volume1/docker/services/paperless-ng ; bash backup.sh) &
+(cd /volume1/docker/services/paperless-ngx ; bash backup.sh) &
 (cd /volume1/docker/services/photoprism ; bash backup.sh) &
 (cd /volume1/docker/services/vaultwarden ; bash backup.sh) &
 

@@ -22,6 +22,20 @@ services:
             - ${PATH_MEDIA}/music:/music
         restart: unless-stopped 
 
+    tautulli:
+        image: lscr.io/linuxserver/tautulli:latest
+        container_name: tautulli
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+            - TZ=${TZ}
+        volumes:
+            - ${PATH_SERVICES}/media-services/tautulli:/config
+            - ${PATH_SERVICES}/media-services/plex/Library/Application Support/Plex Media Server/Logs:/plex/logs:ro
+        ports:
+            - 8107:8181
+        restart: unless-stopped
+
     overseerr:
         image: lscr.io/linuxserver/overseerr:latest
         container_name: overseerr

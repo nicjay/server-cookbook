@@ -13,7 +13,6 @@ services:
             - LOG_FILE=/data/logs/vaultwarden.log
             - LOG_LEVEL=warn
             - EXTENDED_LOGGING=true
-            - ROCKET_CLI_COLORS=off
         volumes:
             - ${PATH_SERVICES}/vaultwarden/config:/data
         networks:

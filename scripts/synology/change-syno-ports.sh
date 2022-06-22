@@ -1,6 +1,7 @@
 #! /bin/bash
 
 # Remaps Synology nginx default ports from 80/443 > 81/444 so other services can use 80/443
+# Restart device after executing
 # View port usage: sudo netstat -lp --numeric-ports
 
 HTTP_PORT=81

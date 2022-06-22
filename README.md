@@ -16,6 +16,5 @@
 
 - NAS: [Synology DS918+](https://www.synology.com/en-global/support/download/DS918+)
   - Storage: 4x [WD 10TB Elements](https://shop.westerndigital.com/products/external-drives/wd-elements-desktop-usb-3-0-hdd#WDBWLG0100HBK-NESN) (shucked) RAID 5
+- Router: [Synology RT6600AX](https://www.synology.com/en-global/products/RT6600ax)
 - UPS: [CyberPower CP1000AVRLCD](https://www.cyberpowersystems.com/product/ups/intelligent-lcd/cp1000avrlcd/)
-- Router: [Netgear R7800](https://www.netgear.com/support/product/r7800.aspx)
-  - [Voxel Firmware](http://www.voxel-firmware.com/Downloads/Voxel/html/r7800.html)

@@ -1,6 +1,6 @@
 services:
     mealie-frontend:
-      image: hkotel/mealie:frontend-nightly
+      image: hkotel/mealie:frontend-v1.0.0beta-4
       container_name: mealie-frontend
       environment:
         - API_URL=http://mealie-api:9000
@@ -11,12 +11,12 @@ services:
       restart: unless-stopped
 
     mealie-api:
-      image: hkotel/mealie:api-nightly
+      image: hkotel/mealie:api-v1.0.0beta-4
       container_name: mealie-api
       volumes:
         - ${PATH_SERVICES}/mealie/config:/app/data
       environment:
-        - ALLOW_SIGNUP=false
+        - ALLOW_SIGNUP=true
         - PUID=${PUID}
         - PGID=${PGID}
         - TZ=${TZ}

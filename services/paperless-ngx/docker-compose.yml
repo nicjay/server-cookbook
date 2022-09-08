@@ -1,20 +1,42 @@
 services:
     paperless-ngx:
-        image: lscr.io/linuxserver/paperless-ngx:latest
+        image: ghcr.io/paperless-ngx/paperless-ngx:latest
         container_name: paperless-ngx
+        depends_on:
+            - paperless-ngx-db
+            - paperless-ngx-broker
         environment:
-            - PUID=${PUID}
-            - PGID=${PGID}
-            - TZ=${TZ}
-            - PAPERLESS_TIME_ZONE=${TZ}
-            - PAPERLESS_FILENAME_FORMAT={created_year}/{correspondent}/{correspondent}-{title}-{created_year}{created_month}{created_day}
-            - PAPERLESS_SECRET_KEY=${PAPERLESS_SECRET_KEY}
-            #- PAPERLESS_ALLOWED_HOSTS=${PAPERLESS_URL}
-            #- PAPERLESS_AUTO_LOGIN_USERNAME=${PAPERLESS_USERNAME}
+            USERMAP_UID: ${PUID}
+            USERMAP_GID: ${PGID}
+            PAPERLESS_TIME_ZONE: ${TZ}
+            PAPERLESS_FILENAME_FORMAT: "{created_year}/{correspondent}/{correspondent}-{title}-{created_year}{created_month}{created_day}"
+            PAPERLESS_SECRET_KEY: ${PAPERLESS_SECRET_KEY}
+            PAPERLESS_REDIS: redis://paperless-ngx-broker:6379
+            PAPERLESS_DBHOST: paperless-ngx-db
         volumes:
-            - ${PATH_SERVICES}/paperless-ngx/config:/config
-            - ${PATH_SERVICES}/paperless-ngx/data:/data
+            - ${PATH_SERVICES}/paperless-ngx/media:/usr/src/paperless/media
+            - ${PATH_SERVICES}/paperless-ngx/data:/usr/src/paperless/data
+            - ${PATH_SERVICES}/paperless-ngx/export:/usr/src/paperless/export
+            - ${PATH_SERVICES}/paperless-ngx/consume:/usr/src/paperless/consume
             - ${PATH_SERVICES}/paperless-ngx/backups:/backups
         ports:
             - 8004:8000
+        restart: unless-stopped
+
+    paperless-ngx-broker:
+        image: docker.io/library/redis:7
+        container_name: paperless-ngx-broker
+        volumes:
+            - ${PATH_SERVICES}/paperless-ngx/redisdata:/data
+        restart: unless-stopped
+
+    paperless-ngx-db:
+        image: docker.io/library/postgres:13
+        container_name: paperless-ngx-db
+        environment:
+            POSTGRES_DB: ${POSTGRES_DB}
+            POSTGRES_USER: ${POSTGRES_USER}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        volumes:
+            - ${PATH_SERVICES}/paperless-ngx/pgdata:/var/lib/postgresql/data
         restart: unless-stopped

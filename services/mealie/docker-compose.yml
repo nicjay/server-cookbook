@@ -1,6 +1,6 @@
 services:
     mealie-frontend:
-      image: hkotel/mealie:frontend-v1.0.0beta-4
+      image: hkotel/mealie:frontend-v1.0.0beta-5
       container_name: mealie-frontend
       environment:
         - API_URL=http://mealie-api:9000
@@ -11,7 +11,7 @@ services:
       restart: unless-stopped
 
     mealie-api:
-      image: hkotel/mealie:api-v1.0.0beta-4
+      image: hkotel/mealie:api-v1.0.0beta-5
       container_name: mealie-api
       volumes:
         - ${PATH_SERVICES}/mealie/config:/app/data

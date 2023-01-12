@@ -1,6 +1,6 @@
 services:
     valheim-server:
-        image: ghcr.io/lloesche/valheim-server:debian10
+        image: ghcr.io/lloesche/valheim-server:latest
         container_name: valheim-server
         cap_add:
             - sys_nice

@@ -135,18 +135,4 @@ services:
             - media-services-net
         restart: unless-stopped
     
-    readarr:
-        image: lscr.io/linuxserver/readarr:develop
-        container_name: readarr
-        environment:
-            - PUID=${PUID}
-            - PGID=${PGID}
-            - TZ=${TZ}
-        volumes:
-            - ${PATH_SERVICES}/media-services/readarr:/config
-            - ${PATH_MEDIA}:/media
-        ports:
-            - 8106:8787
-        networks:
-            - media-services-net
-        restart: unless-stopped
+

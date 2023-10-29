@@ -1,9 +1,0 @@
-services:
-    uptime-kuma:
-        image: louislam/uptime-kuma
-        container_name: uptime-kuma
-        volumes:
-            - ${PATH_SERVICES}/uptime-kuma/config:/app/data
-        ports:
-            - 8011:3001
-        restart: unless-stopped

@@ -1,0 +1,20 @@
+services:
+  scrutiny:
+    image: ghcr.io/analogj/scrutiny:master-omnibus
+    container_name: scrutiny
+    cap_add:
+      - SYS_RAWIO
+      - SYS_ADMIN # Needed for NVME monitoring
+    ports:
+      - 8839:8080
+    volumes:
+      - /run/udev:/run/udev:ro
+      - ${PATH_SERVICES}/scrutiny/config:/opt/scrutiny/config
+      - ${PATH_SERVICES}/scrutiny/db:/opt/scrutiny/influxdb
+    devices:
+      - /dev/nvme0:/dev/nvme0
+      - /dev/sda:/dev/sda
+      - /dev/sdb:/dev/sdb
+      - /dev/sdc:/dev/sdc
+      - /dev/sdd:/dev/sdd
+    restart: unless-stopped

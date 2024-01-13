@@ -1,3 +1,5 @@
+⚠️This repo is no longer in use and is archived for reference only. I have since migrated to new hardware with an overhauled setup, but many of the configurations are still valid.
+-
 ### Overview
 
 - Includes docker-compose files and scripts to configure services on my home server. 
